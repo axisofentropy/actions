@@ -70,8 +70,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: ${{ inputs.repo }}
-          token: ${{ secrets.github-token }}
-          ref: uffizzi
+            #token: ${{ secrets.github-token }}
+          ref: main
 
       - name: Change image tag in kustomization.yaml
         run: |
