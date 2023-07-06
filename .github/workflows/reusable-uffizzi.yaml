@@ -73,10 +73,12 @@ jobs:
             #token: ${{ secrets.github-token }}
           ref: main
 
-      - name: Change image tag in kustomization.yaml
+      - name: Change image tag and Ingress host in kustomization.yaml
         run: |
           cd ${{ inputs.environments-root-dir }}/${{ inputs.environment-dir }}
           kustomize edit set image "$(echo '${{ inputs.image }}' | tr '[:upper:]' '[:lower:]'):${{ inputs.tag }}"
+          kustomize edit add patch --kind Ingress --name web --patch '[{"op": "replace", "path": "/spec/tls/0/hosts/0", "value": "web-pr-${{ inputs.pr-number }}-${{ github.repository_owner }}.app.qa-gke.uffizzi.com"}]'
+          kustomize edit add patch --kind Ingress --name web --patch '[{"op": "replace", "path": "/spec/rules/0/host", "value": "web-pr-${{ inputs.pr-number }}-${{ github.repository_owner }}.app.qa-gke.uffizzi.com"}]'
           cat kustomization.yaml
 
       - name: Create and/or Connect to Uffizzi Cluster
