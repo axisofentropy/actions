@@ -84,7 +84,7 @@ jobs:
           echo "Web Ingress at [https://${INGRESS_HOST}](https://${INGRESS_HOST})" | tee --append $GITHUB_STEP_SUMMARY
 
       - name: Create and/or Connect to Uffizzi Cluster
-        uses: UffizziCloud/cluster-action@delete-cluster
+        uses: UffizziCloud/cluster-action@main
         with:
           cluster-name: pr-${{ inputs.pr-number }}
 

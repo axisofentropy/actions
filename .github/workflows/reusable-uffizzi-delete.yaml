@@ -2,7 +2,6 @@
 name: Delete Uffizzi Cluster
 
 on:  
-
   workflow_call:
     # allow reuse of this workflow in other repos
     inputs:
@@ -36,10 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete Uffizzi Cluster
-        uses: UffizziCloud/cluster-action@delete-cluster
+        uses: UffizziCloud/cluster-action@main
         with:
           cluster-name: pr-${{ inputs.pr-number }}
-          delete: true
+          action: delete
 
       - name: Post to a Slack channel
         id: slack
