@@ -1,7 +1,6 @@
 ---
 name: Uffizzi Preview
 
-on:  
   # REUSABLE WORKFLOW with INPUTS
   # to keep this workflow simple, assumptions are made:
     # - Checks out a repo with a kustomization.yaml file
@@ -9,6 +8,7 @@ on:
     # - Deploys to a Uffizzi Cluster
     # - Optionally notifies a Slack channel
 
+on:
   workflow_call:
     # allow reuse of this workflow in other repos
     inputs:
